@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use Code::CutNPaste;
 use Getopt::Long;
+use Pod::Usage;
 
 GetOptions(
     'window=i'      => \my $window,
@@ -13,7 +14,10 @@ GetOptions(
     'jobs=i'        => \( my $jobs = 1 ),
     'noutf8'        => \my $noutf8,
     'threshold=s'   => \my $threshold,
-) or die "Bad options";
+    'help'          => \my $help,
+) or pod2usage(2);
+
+pod2usage(1) if ($help);
 
 my ( @dirs, @files );
 foreach my $arg (@ARGV) {
